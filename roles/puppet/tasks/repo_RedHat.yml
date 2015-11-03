@@ -1,0 +1,4 @@
+---
+- name: Enable puppet repository
+  become: true
+  yum: name='{{puppet_repository_package_url}}' update_cache=true state=present

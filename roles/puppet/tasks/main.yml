@@ -1,0 +1,22 @@
+---
+- include_vars: '{{ansible_os_family}}.yml'
+  tags:
+    - puppet
+    - puppet-repo
+
+- include_vars: '{{ansible_distribution}}.yml'
+  tags:
+    - puppet
+    - puppet-repo
+
+- include: repo_Debian.yml
+  when: ansible_os_family == 'Debian'
+  tags:
+    - puppet
+    - puppet-repo
+
+- include: repo_RedHat.yml
+  when: ansible_os_family == 'RedHat'
+  tags:
+    - puppet
+    - puppet-repo

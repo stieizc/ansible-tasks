@@ -1,0 +1,4 @@
+---
+puppet_repository_package_url: 'https://apt.puppetlabs.com/puppetlabs-release-pc1-{{ansible_distribution_release}}.deb'
+puppet_repository_package_latest_url: 'https://apt.puppetlabs.com/puppetlabs-release-pc1-jessie.deb'
+puppet_repository_package_file: /tmp/puppet_repo.deb

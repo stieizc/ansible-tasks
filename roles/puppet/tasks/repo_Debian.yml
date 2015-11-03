@@ -1,0 +1,19 @@
+---
+- name: Download puppet repository deb
+  get_url: url='{{puppet_repository_package_url}}' dest='{{puppet_repository_package_file}}'
+  when: ansible_distribution_release != 'NA'
+
+- name: Download puppet repository deb
+  get_url: url='{{puppet_repository_package_latest_url}}' dest='{{puppet_repository_package_file}}'
+  when: ansible_distribution_release == 'NA'
+
+- name: Install puppet repository deb
+  become: true
+  command: dpkg -i '{{puppet_repository_package_file}}'
+
+- name: Remove puppet repository deb
+  file: dest='{{puppet_repository_package_file}}' state=absent
+
+- name: Update package cache
+  become: true
+  apt: update_cache=yes
