@@ -4,3 +4,7 @@ dependencies:
     tags:
       - puppet-agent
       - puppet-agent-packages
+  - role: puppet-common
+    tags:
+      - puppet-agent
+      - puppet-agent-packages

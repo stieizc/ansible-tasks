@@ -6,4 +6,4 @@
 - include: ../../../common_tasks/repo/enable_by_package.yml
   vars:
     repository_package_url: '{{puppet_repository_package_url}}'
-  when: pkg_exists.rc
+  when: pkg_exists.changed and pkg_exists.rc
