@@ -1,9 +1,0 @@
----
-- name: Update package cache
-  become: true
-  yum: name=* update_cache=yes state=present
-
-- name: Install basic packages
-  become: true
-  yum: name='{{item}}' state=latest
-  with_items: '{{packages}}'

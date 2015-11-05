@@ -1,4 +1,9 @@
 ---
-- name: Enable puppet repository
-  become: true
-  yum: name='{{puppet_repository_package_url}}' update_cache=true state=present
+- include: ../../../common_tasks/packages/exists.yml
+  vars:
+    package: puppetlabs-release-pc1
+
+- include: ../../../common_tasks/repo/enable_by_package.yml
+  vars:
+    repository_package_url: '{{puppet_repository_package_url}}'
+  when: pkg_exists.rc

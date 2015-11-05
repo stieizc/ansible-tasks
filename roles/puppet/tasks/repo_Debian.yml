@@ -1,19 +1,16 @@
 ---
-- name: Download puppet repository deb
-  get_url: url='{{puppet_repository_package_url}}' dest='{{puppet_repository_package_file}}'
-  when: ansible_distribution_release != 'NA'
+- include: ../../../common_tasks/packages/exists.yml
+  vars:
+    package: puppetlabs-release-pc1
 
-- name: Download puppet repository deb
-  get_url: url='{{puppet_repository_package_latest_url}}' dest='{{puppet_repository_package_file}}'
-  when: ansible_distribution_release == 'NA'
+- include: ../../../common_tasks/repo/enable_by_package.yml
+  vars:
+    repository_package_url: '{{puppet_repository_package_url}}'
+    repository_package_file: '{{puppet_repository_package_file}}'
+  when: pkg_exists.rc != 0 and ansible_distribution_release != 'NA'
 
-- name: Install puppet repository deb
-  become: true
-  command: dpkg -i '{{puppet_repository_package_file}}'
-
-- name: Remove puppet repository deb
-  file: dest='{{puppet_repository_package_file}}' state=absent
-
-- name: Update package cache
-  become: true
-  apt: update_cache=yes
+- include: ../../../common_tasks/repo/enable_by_package.yml
+  vars:
+    repository_package_url: '{{puppet_repository_package_latest_url}}'
+    repository_package_file: '{{puppet_repository_package_file}}'
+  when: pkg_exists.rc != 0 and ansible_distribution_release == 'NA'

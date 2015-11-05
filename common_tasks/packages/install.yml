@@ -1,0 +1,28 @@
+---
+- name: Install apt packages
+  become: true
+  apt: name='{{item}}' state=latest
+  with_items: '{{packages}}'
+  when: ansible_os_family == 'Debian'
+
+- name: Install apt packages then update package cache
+  become: true
+  apt: name='{{item}}' state=latest
+  with_items: '{{packages}}'
+  notify:
+    - Update package cache
+  when: ansible_os_family == 'Debian'
+
+- name: Install yum packages
+  become: true
+  yum: name='{{item}}' state=latest
+  with_items: '{{packages}}'
+  when: ansible_os_family == 'RedHat'
+
+- name: Install yum packages then update package cache
+  become: true
+  yum: name='{{item}}' state=latest
+  with_items: '{{packages}}'
+  notify:
+    - Update package cache
+  when: ansible_os_family == 'RedHat'

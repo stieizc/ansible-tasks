@@ -2,9 +2,19 @@
 - hosts: all
   roles:
     - base
+  handlers:
+    - include: handlers/packages_Debian.yml
+      when: ansible_os_family == 'Debian'
+    - include: handlers/packages_RedHat.yml
+      when: ansible_os_family == 'RedHat'
 
 - hosts:
     - main
     - server
   roles:
-    - puppet
+    - puppet-agent
+  handlers:
+    - include: handlers/packages_Debian.yml
+      when: ansible_os_family == 'Debian'
+    - include: handlers/packages_RedHat.yml
+      when: ansible_os_family == 'RedHat'

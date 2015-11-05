@@ -1,2 +1,0 @@
----
-puppet_repository_package_url: 'https://yum.puppetlabs.com/puppetlabs-release-el-{{ansible_distribution_major_version}}.noarch.rpm'

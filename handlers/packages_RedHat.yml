@@ -1,0 +1,4 @@
+---
+- name: Update package cache
+  become: true
+  yum: name=* update_cache=yes state=present
