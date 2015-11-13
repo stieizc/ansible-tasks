@@ -1,0 +1,4 @@
+---
+- name: install librarian-puppet gem
+  become: true
+  command: "{{puppet_binpath}}/gem install librarian-puppet"

@@ -13,7 +13,7 @@
     - server
   roles:
     - puppet-agent
-    - r10k
+    - librarian-puppet
   handlers:
     - include: handlers/packages_Debian.yml
       when: ansible_os_family == 'Debian'

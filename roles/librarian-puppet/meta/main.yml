@@ -3,4 +3,4 @@ dependencies:
   - role: puppet-gem
     tags:
       - puppet
-      - r10k
+      - librarian-puppet
