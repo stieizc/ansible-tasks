@@ -1,6 +1,6 @@
 ---
 dependencies:
-  - role: puppet
+  - role: puppet-repo
     tags:
       - puppet-agent
       - puppet-agent-packages

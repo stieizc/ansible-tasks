@@ -1,0 +1,18 @@
+---
+- name: remove rubygems source
+  become: "{{item}}"
+  command: "{{puppet_binpath}}/gem sources --remove https://rubygems.org/"
+  with_items:
+    - true
+    - false
+  tags:
+    - puppet-gem
+
+- name: add taobao source
+  become: "{{item}}"
+  command: "{{puppet_binpath}}/gem sources -a https://ruby.taobao.org/"
+  with_items:
+    - true
+    - false
+  tags:
+    - puppet-gem

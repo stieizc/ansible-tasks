@@ -1,0 +1,4 @@
+---
+- name: install r10k gem
+  become: true
+  command: "{{puppet_binpath}}/gem install r10k"
