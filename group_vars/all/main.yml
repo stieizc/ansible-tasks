@@ -1,2 +1,3 @@
 ---
 puppet_binpath: /opt/puppetlabs/puppet/bin
+puppetlab_binpath: /opt/puppetlabs/bin

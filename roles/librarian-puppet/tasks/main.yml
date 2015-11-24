@@ -2,3 +2,10 @@
 - name: install librarian-puppet gem
   become: true
   command: "{{puppet_binpath}}/gem install librarian-puppet"
+
+- name: add symlink for librarian-puppet
+  become: true
+  file:
+    src: "{{puppet_binpath}}/librarian-puppet"
+    dest: "{{puppetlab_binpath}}/librarian-puppet"
+    state: link

@@ -1,0 +1,15 @@
+---
+- name: install gems
+  become: true
+  command: "{{puppet_binpath}}/gem install {{item}} -- --use-system-libraries"
+  with_items:
+    - hiera-eyaml
+    - hiera-eyaml-gpg
+    - gpgme
+
+- name: add symlink for hiera-eyaml
+  become: true
+  file:
+    src: "{{puppet_binpath}}/eyaml"
+    dest: "{{puppetlab_binpath}}/eyaml"
+    state: link
