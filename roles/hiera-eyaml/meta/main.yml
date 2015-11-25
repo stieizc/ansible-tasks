@@ -4,3 +4,7 @@ dependencies:
     tags:
       - puppet
       - hiera-eyaml
+  - role: common
+    tags:
+      - puppet
+      - hiera-eyaml
