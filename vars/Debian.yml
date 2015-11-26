@@ -10,4 +10,4 @@ hiera_eyaml_dependencies:
   - libassuan0
   - libgpgme11-dev
   - libgpgme11
-  - build-essiential
+  - build-essential
