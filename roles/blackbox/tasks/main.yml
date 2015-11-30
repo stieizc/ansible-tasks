@@ -1,0 +1,25 @@
+---
+- name: check if blackbox installed
+  stat: path=/opt/blackbox
+  tags:
+    - blackbox
+  register: blackbox_installed
+
+- name: clone the blackbox repository
+  git: repo=https://github.com/StackExchange/blackbox.git depth=1 dest=/tmp/blackbox
+  tags:
+    - blackbox
+  when: not blackbox_installed.stat.exists
+
+- name: copy blackbox binaries
+  become: true
+  command: cp -r /tmp/blackbox/bin /opt/blackbox
+  tags:
+    - blackbox
+  when: not blackbox_installed.stat.exists
+
+- name: remove blackbox repository
+  file: path=/tmp/blackbox state=absent
+  tags:
+    - blackbox
+  when: not blackbox_installed.stat.exists

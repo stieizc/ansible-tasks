@@ -1,0 +1,11 @@
+---
+dependencies:
+  - role: puppet-agent
+    tags:
+      - puppet-tasks
+  - role: librarian-puppet
+    tags:
+      - puppet-tasks
+  - role: blackbox
+    tags:
+      - puppet-tasks
