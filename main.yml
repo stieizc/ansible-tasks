@@ -2,7 +2,7 @@
 - hosts: all
   roles:
     - base
-    - puppet-tasks
+    - puppet-system
   handlers:
     - include: handlers/packages_Debian.yml
       when: ansible_os_family == 'Debian'

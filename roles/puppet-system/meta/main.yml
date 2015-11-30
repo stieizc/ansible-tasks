@@ -1,0 +1,7 @@
+---
+dependencies:
+  - role: puppet-task
+    puppet_task_repo: git@github.com:stieizc/puppet-tasks.git
+    puppet_task_dir: /tmp/puppet-system
+    tags:
+      - puppet-system

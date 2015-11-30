@@ -1,0 +1,43 @@
+---
+- name: Clone Puppet task repo
+  git: >
+    repo={{puppet_task_repo}} depth=1
+    dest={{puppet_task_dir}} accept_hostkey=true
+  tags:
+    - puppet-task
+
+- name: Update Puppet modules
+  command: >
+    {{puppetlab_binpath}}/librarian-puppet update
+  args:
+    chdir: "{{puppet_task_dir}}/code"
+  environment:
+    PATH: "{{puppetlab_binpath}}"
+  tags:
+    - puppet-task
+
+- name: Blackbox post deploy
+  command: /opt/blackbox/blackbox_postdeploy
+  args:
+    chdir: "{{puppet_task_dir}}"
+  tags:
+    - puppet-task
+
+- name: Prepare Puppet Task directory
+  become: true
+  file:
+    state: directory
+    dest: "{{puppet_task_dir}}/var/run"
+  tags:
+    - puppet-task
+
+- name: Run Puppet Apply
+  become: true
+  command: >
+    /opt/puppetlabs/bin/puppet apply --confdir=.
+    --certname={{puppet_certname}} --environment={{puppet_environment}}
+    code/environments/{{puppet_environment}}/manifests
+  args:
+    chdir: "{{puppet_task_dir}}"
+  tags:
+    - puppet-task
