@@ -3,5 +3,8 @@ dependencies:
   - role: puppet-task
     puppet_task_repo: git@github.com:stieizc/puppet-tasks.git
     puppet_task_dir: /tmp/puppet-system
+    puppet_apply_args: >
+      --certname={{puppet_certname}} --environment={{puppet_environment}}
+      code/environments/{{puppet_environment}}/manifests
     tags:
       - puppet-system

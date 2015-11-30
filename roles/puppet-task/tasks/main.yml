@@ -35,8 +35,7 @@
   become: true
   command: >
     /opt/puppetlabs/bin/puppet apply --confdir=.
-    --certname={{puppet_certname}} --environment={{puppet_environment}}
-    code/environments/{{puppet_environment}}/manifests
+    {{puppet_apply_args}}
   args:
     chdir: "{{puppet_task_dir}}"
   tags:
