@@ -5,6 +5,6 @@ dependencies:
     puppet_task_dir: /tmp/puppet-system
     puppet_apply_args: >
       --certname={{puppet_certname}} --environment={{puppet_environment}}
-      code/environments/{{puppet_environment}}/manifests
+      code/environments/{{puppet_environment}}/site.pp
     tags:
       - puppet-system
