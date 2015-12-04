@@ -1,0 +1,9 @@
+---
+dependencies:
+  - role: puppet-task
+    puppet_task_repo: git@github.com:stieizc/puppet-phystack.git
+    puppet_task_dir: /tmp/puppet-phystack
+    puppet_apply_args: >
+      code/environments/production/site.pp
+    tags:
+      - puppet-phystack
