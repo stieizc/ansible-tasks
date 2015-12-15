@@ -1,6 +1,6 @@
 ---
 - name: Clone Puppet task repo
-git: >
+  git: >
     repo={{puppet_task_repo}} dest={{puppet_task_dir}} accept_hostkey=true
   tags:
     - puppet-task
