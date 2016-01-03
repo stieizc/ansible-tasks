@@ -6,8 +6,9 @@
 - name: Install repository deb
   become: true
   command: dpkg -i '{{repository_package_file}}'
-  notify:
-    - Update package cache
+  when: ansible_os_family == 'Debian'
+
+- include: ../packages/update_cache.yml
   when: ansible_os_family == 'Debian'
 
 - name: Remove repository deb
