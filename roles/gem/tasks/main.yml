@@ -1,0 +1,20 @@
+---
+- name: setup .gemrc for user
+  become: true
+  copy:
+    src: ../files/.gemrc
+    dest: "{{user_home}}"
+    owner: "{{user_name}}"
+    group: "{{user_name}}"
+  tags:
+    - gem
+
+- name: setup .gemrc for root
+  become: true
+  copy:
+    src: ../files/.gemrc
+    dest: /root
+    owner: root
+    group: root
+  tags:
+    - gem

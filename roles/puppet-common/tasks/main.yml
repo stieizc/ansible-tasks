@@ -1,7 +1,0 @@
----
-- name: configure man path
-  become: true
-  lineinfile:
-    dest: '{{manpath_conf_file}}'
-    line: 'MANPATH_MAP     /opt/puppetlabs/bin     /opt/puppetlabs/puppet/share/man'
-    insertafter: '^MANPATH_MAP'

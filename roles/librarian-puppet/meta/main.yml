@@ -1,6 +1,0 @@
----
-dependencies:
-  - role: puppet-gem
-    tags:
-      - puppet
-      - librarian-puppet

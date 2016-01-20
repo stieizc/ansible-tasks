@@ -6,12 +6,9 @@
     - puppet-task
 
 - name: Update Puppet modules
-  command: >
-    {{puppetlab_binpath}}/librarian-puppet update
+  command: librarian-puppet install
   args:
-    chdir: "{{puppet_task_dir}}/code"
-  environment:
-    PATH: "{{puppetlab_binpath}}"
+    chdir: "{{puppet_task_dir}}"
   tags:
     - puppet-task
 
@@ -26,15 +23,18 @@
   become: true
   file:
     state: directory
-    dest: "{{puppet_task_dir}}/var/run"
+    dest: "{{puppet_task_dir}}/var/{{item}}"
+  with_items:
+    - run
+    - lib
+    - log
   tags:
     - puppet-task
 
 - name: Run Puppet Apply
   become: true
   command: >
-    /opt/puppetlabs/bin/puppet apply --confdir=.
-    {{puppet_apply_args}}
+    puppet apply --confdir=. {{puppet_apply_args}}
   args:
     chdir: "{{puppet_task_dir}}"
   tags:

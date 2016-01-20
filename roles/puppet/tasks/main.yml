@@ -1,0 +1,7 @@
+---
+- include: ../../../common_tasks/packages/install.yml
+  vars:
+    packages: '{{puppet_packages}}'
+  tags:
+    - puppet
+    - puppet-packages

@@ -1,0 +1,5 @@
+---
+- name: copy keys to server
+  unarchive:
+    src: ../../../instance/pg.tar.bz2
+    dest: "{{user_home}}"

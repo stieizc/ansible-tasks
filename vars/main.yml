@@ -4,5 +4,6 @@ base_packages:
   - bash-completion
   - git
 
-puppet_agent_packages:
-  - puppet-agent
+puppet_packages:
+  - puppet
+  - librarian-puppet
