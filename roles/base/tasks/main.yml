@@ -1,4 +1,14 @@
 ---
+- name: install prerequisites
+  become: true
+  yum:
+    name: epel-release,libselinux-python
+    state: present
+  when: ansible_os_family == 'RedHat' and ansible_distribution != 'Fedora' and ansible_distribution_major_version|int < 7
+  tags:
+    - base
+    - base-packages
+
 - include: ../../../common_tasks/packages/install.yml
   vars:
     packages: '{{base_packages}}'

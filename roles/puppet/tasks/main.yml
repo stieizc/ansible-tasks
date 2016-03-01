@@ -5,3 +5,30 @@
   tags:
     - puppet
     - puppet-packages
+
+- name: install gem
+  become: true
+  yum: name=rubygems,ruby-devel,gcc state=present
+  when: ansible_os_family == 'RedHat' and ansible_distribution != 'Fedora' and ansible_distribution_major_version|int < 7
+  tags:
+    - puppet
+    - puppet-packages
+
+- name: install gems
+  become: true
+  command: "gem install {{item}}"
+  when: ansible_os_family == 'RedHat' and ansible_distribution != 'Fedora' and ansible_distribution_major_version|int < 7
+  with_items:
+    - 'highline -v 1.6.21'
+    - 'librarian-puppet -v 1.0.9'
+  tags:
+    - puppet
+    - puppet-packages
+
+- name: install librarian puppet
+  become: true
+  yum: name=librarian-puppet state=present
+  when: ansible_os_family == 'RedHat' and ansible_distribution != 'Fedora' and ansible_distribution_major_version|int >= 7
+  tags:
+    - puppet
+    - puppet-packages
