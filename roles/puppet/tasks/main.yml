@@ -1,4 +1,12 @@
 ---
+- name: install puppet repo package
+  become: true
+  yum: name=https://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm update_cache=true state=present
+  when: ansible_os_family == 'RedHat' and ansible_distribution != 'Fedora' and ansible_distribution_major_version|int < 7
+  tags:
+    - puppet
+    - puppet-packages
+
 - include: ../../../common_tasks/packages/install.yml
   vars:
     packages: '{{puppet_packages}}'
